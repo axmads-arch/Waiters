@@ -11,148 +11,145 @@
 <title>Rahmat Chef</title>
 <style>
 *,::before,::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{
-  --primary-dark:#254e4e;
-  --accent-light:#a8d5ba;
-  --bg:#F2F2F7;
-  --card:#fff;
-  --green:#34C759;--red:#FF3B30;
-  --gray:#8E8E93;--gray2:#C7C7CC;--gray3:#E5E5EA;
-  --sep:rgba(60,60,67,.12);
-  --sh:0 4px 12px rgba(0,0,0,.08);
-  --r:16px;--r2:12px;
-  --f:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
-  --txt:#000;--txt2:#3C3C43;
-  --cbar-bg:rgba(242,242,247,.97);
-  --qctrl-bg:#E5E5EA;
-}
-html,body{height:100%;background:var(--bg);font-family:var(--f);color:var(--txt);overscroll-behavior:none;-webkit-font-smoothing:antialiased}
+html,body{height:100%;background:#F2F2F7;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;color:#000;overscroll-behavior:none;-webkit-font-smoothing:antialiased}
 body{max-width:430px;margin:0 auto;position:relative;overflow:hidden;height:100dvh}
 
-#s-tables{z-index:1}
-#s-order{z-index:3}
-.scr{position:absolute;inset:0;display:flex;flex-direction:column;background:#F2F2F7;
-transition:transform .28s cubic-bezier(.4,0,.2,1),opacity .28s;overflow:hidden;will-change:transform}
-.scr.off{transform:translateX(100%);pointer-events:none}
-.scr.back{transform:translateX(-26%);pointer-events:none;opacity:.5}
+/* SCREENS */
+#s-tables{position:absolute;inset:0;display:flex;flex-direction:column;background:#F2F2F7;overflow:hidden;z-index:1;transition:transform .28s cubic-bezier(.4,0,.2,1),opacity .28s}
+#s-order{position:absolute;inset:0;display:flex;flex-direction:column;background:#F2F2F7;overflow:hidden;z-index:2;transition:transform .28s cubic-bezier(.4,0,.2,1)}
+#s-tables.back{transform:translateX(-26%);opacity:.5;pointer-events:none}
+#s-order.off{transform:translateX(100%);pointer-events:none}
 
 /* NAV */
-.nav{background:var(–primary-dark);border-bottom:1px solid rgba(255,255,255,.1);
-padding:0 12px;display:flex;align-items:center;height:54px;flex-shrink:0;z-index:10}
+.nav{background:#254e4e;padding:0 12px;display:flex;align-items:center;height:54px;flex-shrink:0;
+border-bottom:1px solid rgba(255,255,255,.12)}
 .nav-c{flex:1;text-align:center}
-.nav-t{font-size:17px;font-weight:700;letter-spacing:-.3px;color:#fff}
-.nav-s{font-size:12px;color:var(–accent-light);margin-top:1px}
-.nbtn{background:none;border:none;font-family:var(–f);font-size:17px;color:var(–accent-light);
-padding:8px 4px;cursor:pointer;min-width:48px;font-weight:400;white-space:nowrap}
+.nav-t{font-size:17px;font-weight:700;color:#fff;letter-spacing:-.3px}
+.nav-s{font-size:12px;color:#a8d5ba;margin-top:1px}
+.nbtn{background:none;border:none;font-family:inherit;font-size:17px;color:#a8d5ba;
+padding:8px 4px;cursor:pointer;min-width:48px;white-space:nowrap}
 .nbtn.r{font-weight:600;text-align:right}
-.dmbtn{background:none;border:none;font-size:20px;cursor:pointer;padding:6px;line-height:1;border-radius:8px}
 
 /* SCROLL */
-.scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:8px 10px 40px}
+.scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:12px 12px 40px}
 .scroll::-webkit-scrollbar{display:none}
 
-/* TABLE */
-.shdr{font-size:12px;font-weight:700;color:var(–gray);text-transform:uppercase;letter-spacing:.5px;margin:10px 0 6px 2px}
-.shdr:first-child{margin-top:4px}
-.tgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:0}
-.tc{min-height:unset!important;height:auto!important}
-.tc{background:var(–card);border-radius:var(–r);padding:11px 12px;
-box-shadow:0 2px 8px rgba(0,0,0,.12),0 0 0 1px rgba(0,0,0,.06);
-cursor:pointer;display:flex;flex-direction:column;gap:2px;position:relative;overflow:hidden;
-transition:transform .12s,background .2s;user-select:none;border:2px solid transparent}
-.tc:active{transform:scale(.955)}
-.tc.on{border-color:var(–accent-light);background:rgba(168,213,186,.07)}
-.tnum{font-size:26px;font-weight:800;letter-spacing:-1px;line-height:1;color:var(–primary-dark)}
-.tzone{font-size:10px;color:var(–gray);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
-.tstat{display:flex;align-items:center;gap:5px;margin-top:3px}
-.dot{width:7px;height:7px;border-radius:50%}
-.de{background:var(–gray2)}.da{background:var(–primary-dark)}
-.sl{font-size:12px;font-weight:600}
-.sle{color:var(–gray)}.sla{color:var(–primary-dark)}
-.tsum{font-size:12px;color:var(–primary-dark);margin-top:1px;font-weight:700}
-.tbdg{position:absolute;top:9px;right:9px;background:var(–primary-dark);color:var(–accent-light);
-font-size:11px;font-weight:800;border-radius:10px;padding:2px 7px;line-height:1.5;border:1px solid var(–accent-light)}
+/* SECTION HEADER */
+.shdr{font-size:12px;font-weight:700;color:#8E8E93;text-transform:uppercase;
+letter-spacing:.5px;margin:12px 2px 8px}
 
-/* ── SECTION BAR (Ichimliklar / Shirinliklar) ── */
-.sbar{background:var(–primary-dark);display:flex;flex-shrink:0;padding:8px 12px;gap:8px;border-bottom:1px solid rgba(255,255,255,.08)}
-.sbtn{flex:1;background:rgba(255,255,255,.1);border:none;font-family:var(–f);font-size:14px;font-weight:700;
-color:rgba(255,255,255,.7);padding:9px 8px;border-radius:12px;cursor:pointer;
-transition:background .15s,color .15s;white-space:nowrap}
-.sbtn.on{background:var(–accent-light);color:var(–primary-dark)}
+/* TABLE GRID */
+.tgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:4px}
+.tc{background:#fff;border-radius:14px;padding:12px 10px;cursor:pointer;
+box-shadow:0 2px 8px rgba(0,0,0,.10),0 0 0 1px rgba(0,0,0,.05);
+display:flex;flex-direction:column;gap:3px;position:relative;overflow:hidden;
+transition:transform .12s;user-select:none;border:2px solid transparent}
+.tc:active{transform:scale(.95)}
+.tc.on{border-color:#a8d5ba;background:#f0faf4}
+.tnum{font-size:26px;font-weight:800;letter-spacing:-1px;line-height:1;color:#254e4e}
+.tzone{font-size:10px;color:#8E8E93;font-weight:600;text-transform:uppercase;letter-spacing:.3px}
+.tstat{display:flex;align-items:center;gap:4px;margin-top:2px}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.de{background:#C7C7CC}.da{background:#254e4e}
+.sl{font-size:11px;font-weight:600}
+.sle{color:#8E8E93}.sla{color:#254e4e}
+.tsum{font-size:11px;color:#254e4e;font-weight:700;margin-top:1px}
+.tbdg{position:absolute;top:7px;right:7px;background:#254e4e;color:#a8d5ba;
+font-size:10px;font-weight:800;border-radius:8px;padding:2px 6px;line-height:1.5}
 
-/* ── CAT BAR ── */
-.cbar{background:var(–cbar-bg);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-border-bottom:1px solid var(–sep);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;
-flex-shrink:0;padding:7px 10px;gap:6px}
+/* SECTION BAR */
+.sbar{background:#254e4e;display:flex;flex-shrink:0;padding:8px 12px;gap:8px;
+border-bottom:1px solid rgba(255,255,255,.1)}
+.sbtn{flex:1;background:rgba(255,255,255,.12);border:none;font-family:inherit;
+font-size:14px;font-weight:700;color:rgba(255,255,255,.65);
+padding:9px 8px;border-radius:10px;cursor:pointer;transition:background .15s,color .15s}
+.sbtn.on{background:#a8d5ba;color:#254e4e}
+
+/* CAT BAR */
+.cbar{background:#fff;border-bottom:1px solid rgba(0,0,0,.08);
+display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;
+flex-shrink:0;padding:8px 10px;gap:6px}
 .cbar::-webkit-scrollbar{display:none}
-.cbtn{flex-shrink:0;background:var(–gray3);border:none;font-family:var(–f);font-size:13px;font-weight:600;
-color:var(–txt2);padding:7px 13px;border-radius:20px;cursor:pointer;
-transition:background .12s,color .12s;white-space:nowrap}
-.cbtn.on{background:var(–primary-dark);color:var(–accent-light)}
+.cbtn{flex-shrink:0;background:#F2F2F7;border:none;font-family:inherit;
+font-size:13px;font-weight:600;color:#3C3C43;padding:7px 13px;
+border-radius:20px;cursor:pointer;transition:background .12s,color .12s;white-space:nowrap}
+.cbtn.on{background:#254e4e;color:#a8d5ba}
 
 /* MENU ITEMS */
-.mi{background:var(–card);border-radius:var(–r2);padding:13px;box-shadow:var(–sh);
-display:flex;align-items:center;gap:10px;margin-bottom:7px;user-select:none;transition:background .2s}
-.inum{font-size:13px;font-weight:700;color:var(–gray2);min-width:20px;text-align:center}
+.mshdr{font-size:13px;font-weight:700;color:#254e4e;text-transform:uppercase;
+letter-spacing:.5px;margin:10px 2px 6px;padding-left:2px}
+.mi{background:#fff;border-radius:12px;padding:13px 12px;
+box-shadow:0 1px 4px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04);
+display:flex;align-items:center;gap:10px;margin-bottom:7px;user-select:none}
+.inum{font-size:13px;font-weight:700;color:#C7C7CC;min-width:20px;text-align:center}
 .iinfo{flex:1}
-.iname{font-size:15px;font-weight:500;line-height:1.25;color:var(–txt)}
-.iprice{font-size:13px;color:var(–gray);margin-top:2px}
-.abtn{background:var(–primary-dark);color:var(–accent-light);border:none;font-size:23px;font-weight:300;
+.iname{font-size:15px;font-weight:500;line-height:1.25;color:#000}
+.iprice{font-size:13px;color:#8E8E93;margin-top:2px}
+.abtn{background:#254e4e;color:#a8d5ba;border:none;font-size:22px;font-weight:300;
 width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;
-justify-content:center;flex-shrink:0;transition:transform .1s,background .1s;font-family:var(–f);line-height:1}
-.abtn:active{transform:scale(.82)}
-.abtn.ic{background:var(–accent-light);color:var(–primary-dark)}
+justify-content:center;flex-shrink:0;transition:transform .1s;font-family:inherit;line-height:1}
+.abtn:active{transform:scale(.8)}
+.abtn.ic{background:#a8d5ba;color:#254e4e}
 
-/* ORDER */
-.ocard{background:var(–card);border-radius:var(–r);box-shadow:var(–sh);margin-bottom:8px;overflow:hidden;transition:background .2s}
-.ohdr{padding:13px 15px 10px;border-bottom:1px solid var(–sep);display:flex;align-items:center;justify-content:space-between}
-.ohtit{font-size:16px;font-weight:700;color:var(–primary-dark)}
-.obdg{background:var(–primary-dark);color:var(–accent-light);font-size:12px;font-weight:800;border-radius:10px;padding:3px 9px}
-.oclbl{font-size:13px;font-weight:800;color:var(–accent-light);text-transform:uppercase;letter-spacing:.6px;
-padding:8px 15px;background:var(–primary-dark)}
-.orrow{display:flex;align-items:center;gap:8px;padding:11px 15px;border-bottom:1px solid var(–sep)}
+/* ORDER CARD */
+.ocard{background:#fff;border-radius:14px;
+box-shadow:0 2px 8px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04);
+margin-bottom:10px;overflow:hidden}
+.ohdr{padding:13px 15px 10px;border-bottom:1px solid rgba(0,0,0,.07);
+display:flex;align-items:center;justify-content:space-between}
+.ohtit{font-size:16px;font-weight:700;color:#254e4e}
+.obdg{background:#254e4e;color:#a8d5ba;font-size:12px;font-weight:800;border-radius:8px;padding:3px 9px}
+.oclbl{font-size:12px;font-weight:800;color:#a8d5ba;text-transform:uppercase;
+letter-spacing:.6px;padding:7px 15px;background:#254e4e}
+.orrow{display:flex;align-items:center;gap:8px;padding:11px 15px;
+border-bottom:1px solid rgba(0,0,0,.06)}
 .orrow:last-child{border-bottom:none}
-.oname{font-size:14px;font-weight:500;flex:1;line-height:1.3;color:var(–txt)}
-.qctrl{display:flex;align-items:center;background:var(–qctrl-bg);border-radius:20px;overflow:hidden}
-.qbtn{background:none;border:none;font-family:var(–f);font-size:20px;color:var(–primary-dark);
+.oname{font-size:14px;font-weight:500;flex:1;line-height:1.3;color:#000}
+.qctrl{display:flex;align-items:center;background:#F2F2F7;border-radius:20px;overflow:hidden}
+.qbtn{background:none;border:none;font-family:inherit;font-size:20px;color:#254e4e;
 width:34px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.qbtn:active{background:var(–gray2)}
-.qnum{font-size:14px;font-weight:700;min-width:22px;text-align:center;color:var(–txt)}
-.oprice{font-size:13px;color:var(–primary-dark);min-width:60px;text-align:right;font-weight:700}
+.qbtn:active{background:#E5E5EA}
+.qnum{font-size:14px;font-weight:700;min-width:22px;text-align:center;color:#000}
+.oprice{font-size:13px;color:#254e4e;min-width:60px;text-align:right;font-weight:700}
 
 /* BILL */
-.bcard{background:var(–card);border-radius:var(–r);box-shadow:var(–sh);margin-bottom:8px;overflow:hidden;transition:background .2s}
-.brow{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;border-bottom:1px solid var(–sep)}
+.bcard{background:#fff;border-radius:14px;
+box-shadow:0 2px 8px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04);
+margin-bottom:10px;overflow:hidden}
+.brow{display:flex;justify-content:space-between;align-items:center;
+padding:13px 15px;border-bottom:1px solid rgba(0,0,0,.06)}
 .brow:last-child{border-bottom:none}
-.blbl{font-size:15px;color:var(–txt2)}
-.bval{font-size:15px;font-weight:600;color:var(–txt)}
-.brow.tot{background:rgba(37,78,78,.08)}
-.brow.tot .blbl{font-size:17px;font-weight:800;color:var(–primary-dark)}
-.brow.tot .bval{font-size:17px;font-weight:800;color:var(–primary-dark)}
+.blbl{font-size:15px;color:#3C3C43}
+.bval{font-size:15px;font-weight:600;color:#000}
+.brow.tot{background:rgba(37,78,78,.05)}
+.brow.tot .blbl{font-size:17px;font-weight:800;color:#254e4e}
+.brow.tot .bval{font-size:17px;font-weight:800;color:#254e4e}
 
 /* NOTES */
-.ncard{background:var(–card);border-radius:var(–r);box-shadow:var(–sh);margin-bottom:8px;overflow:hidden;transition:background .2s}
-textarea{width:100%;border:none;font-family:var(–f);font-size:15px;color:var(–txt);
+.ncard{background:#fff;border-radius:14px;
+box-shadow:0 2px 8px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04);
+margin-bottom:10px;overflow:hidden}
+textarea{width:100%;border:none;font-family:inherit;font-size:15px;color:#000;
 padding:14px 15px;resize:none;outline:none;background:transparent;min-height:72px;line-height:1.5}
-textarea::placeholder{color:var(–gray)}
+textarea::placeholder{color:#8E8E93}
 
-/* ACTION */
-.arow{display:flex;gap:10px;margin-bottom:8px}
-.xbtn{flex:1;border:none;font-family:var(–f);font-size:16px;font-weight:700;
-padding:16px 8px;border-radius:var(–r2);cursor:pointer;transition:opacity .12s,transform .1s;letter-spacing:-.2px}
+/* ACTION BTNS */
+.arow{display:flex;gap:10px;margin-bottom:10px}
+.xbtn{flex:1;border:none;font-family:inherit;font-size:16px;font-weight:700;
+padding:16px 8px;border-radius:12px;cursor:pointer;transition:opacity .12s,transform .1s}
 .xbtn:active{opacity:.75;transform:scale(.97)}
-.xbtn.clr{background:rgba(255,59,48,.12);color:var(–red)}
-.xbtn.pay{background:var(–primary-dark);color:var(–accent-light)}
+.xbtn.clr{background:rgba(255,59,48,.1);color:#FF3B30}
+.xbtn.pay{background:#254e4e;color:#a8d5ba}
 
 /* EMPTY */
-.empty{text-align:center;padding:40px 16px 20px;color:var(–gray)}
+.empty{text-align:center;padding:40px 16px 20px;color:#8E8E93}
 .ei{font-size:48px;margin-bottom:10px}
 .et{font-size:15px}
 
 /* TOAST */
-.toast{position:fixed;bottom:calc(30px + env(safe-area-inset-bottom));left:50%;
+.toast{position:fixed;bottom:calc(28px + env(safe-area-inset-bottom));left:50%;
 transform:translateX(-50%) translateY(14px);background:rgba(37,78,78,.95);
-color:var(–accent-light);font-size:14px;font-weight:600;padding:10px 22px;border-radius:22px;
+color:#a8d5ba;font-size:14px;font-weight:600;padding:10px 22px;border-radius:22px;
 pointer-events:none;opacity:0;transition:opacity .18s,transform .18s;
 z-index:9999;white-space:nowrap;max-width:92vw;text-align:center}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -161,7 +158,7 @@ z-index:9999;white-space:nowrap;max-width:92vw;text-align:center}
 </head>
 <body>
 
-<div class="scr" id="s-tables">
+<div id="s-tables">
   <div class="nav">
     <div class="nav-c">
       <div class="nav-t">👨‍🍳 Rahmat Chef ®</div>
@@ -176,7 +173,7 @@ z-index:9999;white-space:nowrap;max-width:92vw;text-align:center}
   </div>
 </div>
 
-<div class="scr off" id="s-order">
+<div id="s-order" class="off">
   <div class="nav">
     <button class="nbtn" id="B_BACK">‹ Orqaga</button>
     <div class="nav-c">
@@ -185,24 +182,14 @@ z-index:9999;white-space:nowrap;max-width:92vw;text-align:center}
     </div>
     <button class="nbtn r" id="B_BILL">Hisob ↓</button>
   </div>
-
-  <!-- Bo'lim tanlash -->
-
   <div class="sbar">
     <button class="sbtn on" id="SB_ICH" onclick="setSection('ich')">🥤 Ichimliklar</button>
     <button class="sbtn" id="SB_SHI" onclick="setSection('shi')">🍰 Shirinliklar</button>
   </div>
-
-  <!-- Kategoriya -->
-
   <div class="cbar" id="cbar"></div>
-
   <div class="scroll" id="o-scroll">
     <div id="menu-list"></div>
-    <div class="empty" id="el-empty">
-      <div class="ei">🛒</div>
-      <div class="et">Hozircha buyurtma yo'q</div>
-    </div>
+    <div class="empty" id="el-empty"><div class="ei">🛒</div><div class="et">Hozircha buyurtma yo'q</div></div>
     <div id="el-order"></div>
     <div id="el-bill"></div>
     <div class="ncard" id="el-notes">
@@ -221,156 +208,97 @@ z-index:9999;white-space:nowrap;max-width:92vw;text-align:center}
 <script>
 const SECTIONS={
   ich:{
-    label:"🥤 Ichimliklar",
     cats:{
       "Choy":[
-        {n:"Assam (qora choy)",p:15000},
-        {n:"Sencha (ko'k choy)",p:15000},
-        {n:"Qora bliss",p:15000},
-        {n:"Yashil bliss",p:15000},
-        {n:"Limonli choy",p:20000},
-        {n:"Rezavorli (yagodniy)",p:35000},
-        {n:"Mango marakuya",p:35000},
-        {n:"Mevali",p:35000},
-        {n:"Relax",p:35000},
-        {n:"Zanjabilli",p:35000},
-        {n:"Karkade",p:15000},
-        {n:"Chabretts",p:15000}
+        {n:"Assam (qora choy)",p:15000},{n:"Sencha (ko'k choy)",p:15000},
+        {n:"Qora bliss",p:15000},{n:"Yashil bliss",p:15000},
+        {n:"Limonli choy",p:20000},{n:"Rezavorli (yagodniy)",p:35000},
+        {n:"Mango marakuya",p:35000},{n:"Mevali",p:35000},
+        {n:"Relax",p:35000},{n:"Zanjabilli",p:35000},
+        {n:"Karkade",p:15000},{n:"Chabretts",p:15000}
       ],
       "Kofe":[
-        {n:"Espresso doppio",p:25000},
-        {n:"Americano",p:25000},
-        {n:"Americano grand",p:30000},
-        {n:"Kapuchino",p:30000},
-        {n:"Kapuchino grand",p:35000},
-        {n:"Raf",p:30000},
-        {n:"Flat white",p:30000},
-        {n:"Latte",p:30000},
-        {n:"Ays americano",p:30000},
-        {n:"Ays latte",p:30000},
-        {n:"Matcha",p:35000},
-        {n:"Ays matcha latte",p:35000}
+        {n:"Espresso doppio",p:25000},{n:"Americano",p:25000},
+        {n:"Americano grand",p:30000},{n:"Kapuchino",p:30000},
+        {n:"Kapuchino grand",p:35000},{n:"Raf",p:30000},
+        {n:"Flat white",p:30000},{n:"Latte",p:30000},
+        {n:"Ays americano",p:30000},{n:"Ays latte",p:30000},
+        {n:"Matcha",p:35000},{n:"Ays matcha latte",p:35000}
       ],
       "Limonad":[
-        {n:"Mango marakuya (stakan)",p:35000},
-        {n:"Mango marakuya (grafin)",p:50000},
-        {n:"Tarxun marakuya (stakan)",p:35000},
-        {n:"Tarxun marakuya (grafin)",p:50000},
-        {n:"Olma marakuya (stakan)",p:35000},
-        {n:"Olma marakuya (grafin)",p:50000},
-        {n:"Kivi (stakan)",p:35000},
-        {n:"Kivi (grafin)",p:50000},
-        {n:"Rezavorli limonad (stakan)",p:35000},
-        {n:"Rezavorli limonad (grafin)",p:50000}
+        {n:"Mango marakuya (stakan)",p:35000},{n:"Mango marakuya (grafin)",p:50000},
+        {n:"Tarxun marakuya (stakan)",p:35000},{n:"Tarxun marakuya (grafin)",p:50000},
+        {n:"Olma marakuya (stakan)",p:35000},{n:"Olma marakuya (grafin)",p:50000},
+        {n:"Kivi (stakan)",p:35000},{n:"Kivi (grafin)",p:50000},
+        {n:"Rezavorli limonad (stakan)",p:35000},{n:"Rezavorli limonad (grafin)",p:50000}
       ],
       "Sheyk":[
-        {n:"Karamelli sheyk",p:25000},
-        {n:"Vanilli sheyk",p:25000},
-        {n:"Rezavorli sheyk",p:30000},
-        {n:"Shokoladli sheyk",p:30000}
+        {n:"Karamelli sheyk",p:25000},{n:"Vanilli sheyk",p:25000},
+        {n:"Rezavorli sheyk",p:30000},{n:"Shokoladli sheyk",p:30000}
       ],
       "Krem Choy":[
-        {n:"Kivi aloe",p:35000},
-        {n:"Shaftoli aloe",p:35000},
-        {n:"Rezavorli",p:35000}
+        {n:"Kivi aloe",p:35000},{n:"Shaftoli aloe",p:35000},{n:"Rezavorli",p:35000}
       ],
       "Fresh":[
-        {n:"Sabzili",p:30000},
-        {n:"Olmali",p:30000},
-        {n:"Miks",p:30000},
-        {n:"Lavlagi",p:30000}
+        {n:"Sabzili",p:30000},{n:"Olmali",p:30000},{n:"Miks",p:30000},{n:"Lavlagi",p:30000}
       ],
       "Alkogolsiz":[
-        {n:"Ays ti",p:35000},
-        {n:"Moxito",p:35000}
+        {n:"Ays ti",p:35000},{n:"Moxito",p:35000}
       ]
     }
   },
   shi:{
-    label:"🍰 Shirinliklar",
     cats:{
       "San Sebastian":[
-        {n:"Nutella",p:5000},
-        {n:"Karameliy",p:20000},
-        {n:"Maulinali",p:20000},
-        {n:"Classic",p:20000},
-        {n:"Apelsinli",p:20000},
-        {n:"Fistashkali",p:20000},
-        {n:"Dragon fruit",p:20000},
-        {n:"San Sebastian Kopel",p:20000},
-        {n:"Qulupnay",p:20000},
-        {n:"Matcha",p:20000},
-        {n:"Matilda",p:20000},
-        {n:"San Sebastian mini",p:35000},
-        {n:"San Sebastian mini Lotus",p:35000}
+        {n:"Nutella",p:5000},{n:"Karameliy",p:20000},{n:"Maulinali",p:20000},
+        {n:"Classic",p:20000},{n:"Apelsinli",p:20000},{n:"Fistashkali",p:20000},
+        {n:"Dragon fruit",p:20000},{n:"San Sebastian Kopel",p:20000},
+        {n:"Qulupnay",p:20000},{n:"Matcha",p:20000},{n:"Matilda",p:20000},
+        {n:"San Sebastian mini",p:35000},{n:"San Sebastian mini Lotus",p:35000}
       ],
       "Cheesecake":[
-        {n:"Malinali cheesecake",p:35000},
-        {n:"Shokoladli cheesecake",p:35000},
-        {n:"Oreo cheesecake",p:35000},
-        {n:"Tiramisu cheesecake",p:35000},
-        {n:"Lotus cheesecake",p:35000},
-        {n:"Dakuaz (pistaq-mevali)",p:35000}
+        {n:"Malinali cheesecake",p:35000},{n:"Shokoladli cheesecake",p:35000},
+        {n:"Oreo cheesecake",p:35000},{n:"Tiramisu cheesecake",p:35000},
+        {n:"Lotus cheesecake",p:35000},{n:"Dakuaz (pistaq-mevali)",p:35000}
       ],
       "Kroasan":[
-        {n:"Fistashkali",p:20000},
-        {n:"Shokoladli",p:20000},
-        {n:"Mindalli",p:20000}
+        {n:"Fistashkali",p:20000},{n:"Shokoladli",p:20000},{n:"Mindalli",p:20000}
       ],
       "Tort":[
-        {n:"Napoleon tort",p:35000},
-        {n:"Matilda (shokoladli) tort",p:20000},
-        {n:"Napoleon (shokoladli)",p:35000},
-        {n:"General tort",p:35000},
-        {n:"Afg'oncha tort",p:35000},
-        {n:"Snickers tort",p:35000},
-        {n:"Zaxer (shokoladli tort)",p:35000},
-        {n:"Ptichye moloko",p:20000}
+        {n:"Napoleon tort",p:35000},{n:"Matilda (shokoladli) tort",p:20000},
+        {n:"Napoleon (shokoladli)",p:35000},{n:"General tort",p:35000},
+        {n:"Afg'oncha tort",p:35000},{n:"Snickers tort",p:35000},
+        {n:"Zaxer (shokoladli tort)",p:35000},{n:"Ptichye moloko",p:20000}
       ],
       "Tart":[
-        {n:"Tart (karamelli)",p:20000},
-        {n:"Tart (shaftoli)",p:20000},
-        {n:"Limon tart",p:20000}
+        {n:"Tart (karamelli)",p:20000},{n:"Tart (shaftoli)",p:20000},{n:"Limon tart",p:20000}
       ],
       "Merenqa":[
-        {n:"Merenqa rulet (fistashkali)",p:25000},
-        {n:"Merenqa rulet (malinali)",p:25000},
+        {n:"Merenqa rulet (fistashkali)",p:25000},{n:"Merenqa rulet (malinali)",p:25000},
         {n:"Merenqa rulet (katta)",p:125000}
       ],
       "Pirog":[
-        {n:"Tvorogli pirog",p:17000},
-        {n:"Olmali pirog",p:17000},
-        {n:"Olchali pirog",p:17000},
-        {n:"Kurbakali pirog",p:17000},
-        {n:"Zvezda (suzma pechenye)",p:7000},
-        {n:"Ragalik (iriskali) 1kg",p:48000},
-        {n:"Profitrol (ekler shariklari)",p:12000},
-        {n:"Paxlava",p:20000},
-        {n:"Bakushka (yong'oq pechenye)",p:60000},
-        {n:"Trubochka (krem bilan)",p:10000}
+        {n:"Tvorogli pirog",p:17000},{n:"Olmali pirog",p:17000},
+        {n:"Olchali pirog",p:17000},{n:"Kurbakali pirog",p:17000},
+        {n:"Zvezda (suzma pechenye)",p:7000},{n:"Ragalik (iriskali) 1kg",p:48000},
+        {n:"Profitrol (ekler shariklari)",p:12000},{n:"Paxlava",p:20000},
+        {n:"Bakushka (yong'oq pechenye)",p:60000},{n:"Trubochka (krem bilan)",p:10000}
       ],
       "Muz":[
-        {n:"Muzqaymoq",p:10000},
-        {n:"Limonli muss",p:20000},
-        {n:"Qulupnay muss",p:20000},
-        {n:"Olmali muss",p:20000},
-        {n:"Shokoladli muss",p:20000}
+        {n:"Muzqaymoq",p:10000},{n:"Limonli muss",p:20000},
+        {n:"Qulupnay muss",p:20000},{n:"Olmali muss",p:20000},{n:"Shokoladli muss",p:20000}
       ],
       "Makaron":[
-        {n:"Makaron fistashkali",p:10000},
-        {n:"Makaron shokoladli",p:10000},
-        {n:"Makaron malinali",p:10000},
-        {n:"Makaron limonli",p:10000}
+        {n:"Makaron fistashkali",p:10000},{n:"Makaron shokoladli",p:10000},
+        {n:"Makaron malinali",p:10000},{n:"Makaron limonli",p:10000}
       ],
       "Medovik":[
-        {n:"Medovik (spartak)",p:35000},
-        {n:"Milfy (napoleon uslubida)",p:35000}
+        {n:"Medovik (spartak)",p:35000},{n:"Milfy (napoleon uslubida)",p:35000}
       ]
     }
   }
 };
 
-// Flat MENU for catOf lookup
 const MENU={};
 for(const sec of Object.values(SECTIONS))
   for(const[cat,items] of Object.entries(sec.cats))
@@ -378,9 +306,8 @@ for(const sec of Object.values(SECTIONS))
 const ALL_CATS=Object.keys(MENU);
 
 const SVC=0.15;
-const KEY='rc_v4';
-
-let orders={}, curTable=null, curSection='ich', curCat='Choy';
+const KEY='rc_v5';
+let orders={},curTable=null,curSection='ich',curCat='Choy';
 
 function save(){try{localStorage.setItem(KEY,JSON.stringify(orders))}catch(e){}}
 function load(){try{const d=localStorage.getItem(KEY);if(d)orders=JSON.parse(d)}catch(e){}}
@@ -391,9 +318,7 @@ function ord(t){if(!orders[t])orders[t]={items:[],notes:""};return orders[t]}
 function sumQty(t){return ord(t).items.reduce((s,i)=>s+i.qty,0)}
 function sumMoney(t){return ord(t).items.reduce((s,i)=>s+i.price*i.qty,0)}
 function catOf(name,price){
-  for(const c of ALL_CATS)
-    for(const m of MENU[c])
-      if(m.n===name&&m.p===price)return c;
+  for(const c of ALL_CATS)for(const m of MENU[c])if(m.n===name&&m.p===price)return c;
   return"Boshqa";
 }
 
@@ -401,13 +326,12 @@ let tT;
 function toast(msg){
   const el=document.getElementById('toast');
   el.textContent=msg;el.classList.add('on');
-  clearTimeout(tT);tT=setTimeout(()=>el.classList.remove('on'),2000);
+  clearTimeout(tT);tT=setTimeout(()=>el.classList.remove('on'),2200);
 }
 
 function setSection(sec){
   curSection=sec;
-  const cats=Object.keys(SECTIONS[sec].cats);
-  curCat=cats[0];
+  curCat=Object.keys(SECTIONS[sec].cats)[0];
   document.getElementById('SB_ICH').classList.toggle('on',sec==='ich');
   document.getElementById('SB_SHI').classList.toggle('on',sec==='shi');
   buildCatBar();buildMenu();
@@ -417,34 +341,25 @@ function setSection(sec){
 function buildTables(){
   document.getElementById('g-zal').innerHTML='';
   document.getElementById('g-kocha').innerHTML='';
-  for(let i=1;i<=9;i++){
-    const id='Z'+i,q=sumQty(id),m=sumMoney(id),on=q>0;
-    const d=document.createElement('div');
-    d.className='tc'+(on?' on':'');
-    d.innerHTML=`<div class="tnum">${i}</div>
-      <div class="tzone">Zal</div>
-      <div class="tstat"><div class="dot ${on?'da':'de'}"></div><div class="sl ${on?'sla':'sle'}">${on?"Faol":"Bo'sh"}</div></div>
-      <div class="tsum">${on?fmt(m):''}</div>
-      ${q>0?`<div class="tbdg">${q}</div>`:''}`;
-    d.onclick=()=>openTable(id,'Zal',i);
-    document.getElementById('g-zal').appendChild(d);
-  }
-  for(let i=1;i<=5;i++){
-    const id='K'+i,q=sumQty(id),m=sumMoney(id),on=q>0;
-    const d=document.createElement('div');
-    d.className='tc'+(on?' on':'');
-    d.innerHTML=`<div class="tnum">${i}</div>
-      <div class="tzone">Ko'cha</div>
-      <div class="tstat"><div class="dot ${on?'da':'de'}"></div><div class="sl ${on?'sla':'sle'}">${on?"Faol":"Bo'sh"}</div></div>
-      <div class="tsum">${on?fmt(m):''}</div>
-      ${q>0?`<div class="tbdg">${q}</div>`:''}`;
-    d.onclick=()=>openTable(id,"Ko'cha",i);
-    document.getElementById('g-kocha').appendChild(d);
-  }
+  for(let i=1;i<=9;i++) makeCard('Z'+i,'Zal',i,'g-zal');
+  for(let i=1;i<=5;i++) makeCard('K'+i,"Ko'cha",i,'g-kocha');
+}
+
+function makeCard(id,zone,num,grid){
+  const q=sumQty(id),m=sumMoney(id),on=q>0;
+  const d=document.createElement('div');
+  d.className='tc'+(on?' on':'');
+  d.innerHTML=`<div class="tnum">${num}</div>
+    <div class="tzone">${zone}</div>
+    <div class="tstat"><div class="dot ${on?'da':'de'}"></div><span class="sl ${on?'sla':'sle'}">${on?'Faol':"Bo'sh"}</span></div>
+    <div class="tsum">${on?fmt(m):''}</div>
+    ${q>0?`<div class="tbdg">${q}</div>`:''}`;
+  d.onclick=()=>openTable(id,zone,num);
+  document.getElementById(grid).appendChild(d);
 }
 
 function openTable(id,zone,num){
-  curTable=id; curSection='ich'; curCat='Choy';
+  curTable=id;curSection='ich';curCat='Choy';
   document.getElementById('o-title').textContent='Stol '+num;
   document.getElementById('o-sub').textContent=zone;
   document.getElementById('notes-inp').value=ord(id).notes||'';
@@ -454,6 +369,7 @@ function openTable(id,zone,num){
   document.getElementById('s-tables').classList.add('back');
   document.getElementById('s-order').classList.remove('off');
 }
+
 function goBack(){
   document.getElementById('s-order').classList.add('off');
   document.getElementById('s-tables').classList.remove('back');
@@ -463,8 +379,7 @@ function goBack(){
 function buildCatBar(){
   const bar=document.getElementById('cbar');
   bar.innerHTML='';
-  const cats=Object.keys(SECTIONS[curSection].cats);
-  cats.forEach(c=>{
+  Object.keys(SECTIONS[curSection].cats).forEach(c=>{
     const b=document.createElement('button');
     b.className='cbtn'+(c===curCat?' on':'');
     b.textContent=c;
@@ -478,7 +393,7 @@ function buildMenu(){
   const items=SECTIONS[curSection].cats[curCat]||[];
   const o=ord(curTable);
   const el=document.getElementById('menu-list');
-  el.innerHTML=`<div class="shdr" style="margin-top:4px">${curCat}</div>`;
+  el.innerHTML=`<div class="mshdr">${curCat}</div>`;
   items.forEach((item,i)=>{
     const ic=o.items.some(x=>x.name===item.n&&x.price===item.p);
     const d=document.createElement('div');
@@ -508,12 +423,10 @@ function buildOrder(){
   const elBill=document.getElementById('el-bill');
   const elNotes=document.getElementById('el-notes');
   if(!o.items.length){
-    elEmpty.style.display='';
-    elOrder.innerHTML='';elBill.innerHTML='';
-    elNotes.style.opacity='0.3';return;
+    elEmpty.style.display='';elOrder.innerHTML='';
+    elBill.innerHTML='';elNotes.style.opacity='.35';return;
   }
-  elEmpty.style.display='none';
-  elNotes.style.opacity='1';
+  elEmpty.style.display='none';elNotes.style.opacity='1';
   const groups={};
   o.items.forEach((item,idx)=>{
     const c=catOf(item.name,item.price);
@@ -566,39 +479,33 @@ document.getElementById('B_BILL').onclick=function(){
   document.getElementById('o-scroll').scrollTo({top:99999,behavior:'smooth'});
 };
 document.getElementById('B_CLEAR').onclick=function(){
-  if(!curTable){toast("Stol tanlanmagan");return;}
+  if(!curTable)return;
   if(!confirm("Buyurtma o'chirilsinmi?"))return;
-  orders[curTable]={items:[],notes:""};
-  save();document.getElementById('notes-inp').value='';
-  buildMenu();buildOrder();
-  toast('🗑 Stol tozalandi');
+  orders[curTable]={items:[],notes:""};save();
+  document.getElementById('notes-inp').value='';
+  buildMenu();buildOrder();toast("🗑 Tozalandi");
 };
 document.getElementById('B_PAY').onclick=function(){
-  if(!curTable){toast("Stol tanlanmagan");return;}
+  if(!curTable)return;
   const o=ord(curTable);
   if(!o.items.length){toast("Buyurtma yo'q!");return;}
   const sub=o.items.reduce((s,i)=>s+i.price*i.qty,0);
   const svc=Math.round(sub*SVC);
-  if(!confirm('Subtotal: '+fmt(sub)+'\nXizmat: '+fmt(svc)+"\nJAMI: "+fmt(sub+svc)+"\n\nTo'landi deb belgilansinmi?"))return;
-  orders[curTable]={items:[],notes:""};
-  save();goBack();
+  if(!confirm('Subtotal: '+fmt(sub)+'\nXizmat: '+fmt(svc)+'\nJAMI: '+fmt(sub+svc)+"\n\nTo'landi?"))return;
+  orders[curTable]={items:[],notes:""};save();goBack();
   toast("✅ To'landi!");
 };
 
 if('serviceWorker' in navigator){
-  const sw=`const V='rc3';
+  const sw=`const V='rc5';
 self.addEventListener('install',()=>self.skipWaiting());
 self.addEventListener('activate',()=>self.clients.claim());
 self.addEventListener('fetch',e=>{
   if(e.request.method!=='GET')return;
-  e.respondWith(caches.open(V).then(c=>
-    c.match(e.request).then(r=>r||fetch(e.request).then(res=>{c.put(e.request,res.clone());return res;}))
-  ));
+  e.respondWith(caches.open(V).then(c=>c.match(e.request).then(r=>r||fetch(e.request).then(res=>{c.put(e.request,res.clone());return res;}))));
 });`;
-  try{
-    const blob=new Blob([sw],{type:'text/javascript'});
-    navigator.serviceWorker.register(URL.createObjectURL(blob));
-  }catch(e){}
+  try{const blob=new Blob([sw],{type:'text/javascript'});
+    navigator.serviceWorker.register(URL.createObjectURL(blob));}catch(e){}
 }
 
 buildTables();
