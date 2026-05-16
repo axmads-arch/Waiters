@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
@@ -11,148 +12,157 @@
 <style>
 *,::before,::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  /* Logotip ranglari */
-  --primary-dark: #254e4e; 
-  --accent-light: #a8d5ba;
-  
+  --primary-dark:#254e4e;
+  --accent-light:#a8d5ba;
   --bg:#F2F2F7;
   --card:#fff;
-  --acc: var(--primary-dark); /* Asosiy tugmalar logotip rangida */
-  --green:#34C759;
-  --red:#FF3B30;
-  --gray:#8E8E93;
-  --gray2:#C7C7CC;
-  --gray3:#E5E5EA;
+  --green:#34C759;--red:#FF3B30;
+  --gray:#8E8E93;--gray2:#C7C7CC;--gray3:#E5E5EA;
   --sep:rgba(60,60,67,.12);
   --sh:0 4px 12px rgba(0,0,0,.08);
-  --r:16px;
-  --r2:12px;
+  --r:16px;--r2:12px;
   --f:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
+  --txt:#000;--txt2:#3C3C43;
+  --cbar-bg:rgba(242,242,247,.97);
+  --qctrl-bg:#E5E5EA;
 }
-html,body{height:100%;background:var(--bg);font-family:var(--f);color:#000;overscroll-behavior:none;-webkit-font-smoothing:antialiased}
+body.dark{
+  --bg:#0f0f0f;--card:#1c1c1e;
+  --gray3:#2c2c2e;--gray2:#48484a;
+  --sep:rgba(255,255,255,.1);
+  --sh:0 4px 16px rgba(0,0,0,.5);
+  --txt:#fff;--txt2:#ebebf5;
+  --cbar-bg:rgba(20,20,22,.97);
+  --qctrl-bg:#2c2c2e;
+}
+html,body{height:100%;background:var(--bg);font-family:var(--f);color:var(--txt);overscroll-behavior:none;-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
 body{max-width:430px;margin:0 auto;position:relative;overflow:hidden;height:100dvh}
 
-/* SCREENS */
-.scr{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);
+.scr{position:absolute;inset:0;display:flex;flex-direction:column;background:var(–bg);
 transition:transform .28s cubic-bezier(.4,0,.2,1),opacity .28s;overflow:hidden;will-change:transform}
 .scr.off{transform:translateX(100%);pointer-events:none}
 .scr.back{transform:translateX(-26%);pointer-events:none;opacity:.5}
 
 /* NAV */
-.nav{background:var(--primary-dark);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-border-bottom:1px solid rgba(255,255,255,0.1);padding:0 12px;display:flex;align-items:center;height:54px;flex-shrink:0;z-index:10}
+.nav{background:var(–primary-dark);border-bottom:1px solid rgba(255,255,255,.1);
+padding:0 12px;display:flex;align-items:center;height:54px;flex-shrink:0;z-index:10}
 .nav-c{flex:1;text-align:center}
-.nav-t{font-size:17px;font-weight:700;letter-spacing:-.3px;color:#ffffff}
-.nav-s{font-size:12px;color:var(--accent-light);margin-top:1px}
-.nbtn{background:none;border:none;font-family:var(--f);font-size:17px;color:var(--accent-light);
+.nav-t{font-size:17px;font-weight:700;letter-spacing:-.3px;color:#fff}
+.nav-s{font-size:12px;color:var(–accent-light);margin-top:1px}
+.nbtn{background:none;border:none;font-family:var(–f);font-size:17px;color:var(–accent-light);
 padding:8px 4px;cursor:pointer;min-width:48px;font-weight:400;white-space:nowrap}
 .nbtn.r{font-weight:600;text-align:right}
+.dmbtn{background:none;border:none;font-size:20px;cursor:pointer;padding:6px;line-height:1;border-radius:8px}
 
 /* SCROLL */
 .scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:10px 14px 40px}
 .scroll::-webkit-scrollbar{display:none}
 
-/* TABLE GRID */
-.shdr{font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 8px 2px}
+/* TABLE */
+.shdr{font-size:12px;font-weight:700;color:var(–gray);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 8px 2px}
 .shdr:first-child{margin-top:4px}
 .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px}
-.tc{background:var(--card);border-radius:var(--r);padding:15px 13px;box-shadow:var(--sh);cursor:pointer;
+.tc{background:var(–card);border-radius:var(–r);padding:15px 13px;box-shadow:var(–sh);cursor:pointer;
 display:flex;flex-direction:column;gap:4px;position:relative;overflow:hidden;
-transition:transform .12s;user-select:none;border:2px solid transparent}
+transition:transform .12s,background .2s;user-select:none;border:2px solid transparent}
 .tc:active{transform:scale(.955)}
-.tc.on{border-color:var(--accent-light);background:rgba(168, 213, 186, 0.05)}
-.tnum{font-size:32px;font-weight:800;letter-spacing:-1.5px;line-height:1;color:var(--primary-dark)}
-.tzone{font-size:11px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
+.tc.on{border-color:var(–accent-light);background:rgba(168,213,186,.07)}
+.tnum{font-size:32px;font-weight:800;letter-spacing:-1.5px;line-height:1;color:var(–primary-dark)}
+.tzone{font-size:11px;color:var(–gray);font-weight:600;text-transform:uppercase;letter-spacing:.3px}
 .tstat{display:flex;align-items:center;gap:5px;margin-top:3px}
 .dot{width:7px;height:7px;border-radius:50%}
-.de{background:var(--gray2)}.da{background:var(--primary-dark)}
+.de{background:var(–gray2)}.da{background:var(–primary-dark)}
 .sl{font-size:12px;font-weight:600}
-.sle{color:var(--gray)}.sla{color:var(--primary-dark)}
-.tsum{font-size:12px;color:var(--primary-dark);margin-top:1px;font-weight:700}
-.tbdg{position:absolute;top:9px;right:9px;background:var(--primary-dark);color:var(--accent-light);
-font-size:11px;font-weight:800;border-radius:10px;padding:2px 7px;line-height:1.5;border:1px solid var(--accent-light)}
+.sle{color:var(–gray)}.sla{color:var(–primary-dark)}
+.tsum{font-size:12px;color:var(–primary-dark);margin-top:1px;font-weight:700}
+.tbdg{position:absolute;top:9px;right:9px;background:var(–primary-dark);color:var(–accent-light);
+font-size:11px;font-weight:800;border-radius:10px;padding:2px 7px;line-height:1.5;border:1px solid var(–accent-light)}
 
-/* CAT BAR */
-.cbar{background:rgba(242,242,247,.95);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-border-bottom:1px solid var(--sep);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;
+/* ── SECTION BAR (Ichimliklar / Shirinliklar) ── */
+.sbar{background:var(–primary-dark);display:flex;flex-shrink:0;padding:8px 12px;gap:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sbtn{flex:1;background:rgba(255,255,255,.1);border:none;font-family:var(–f);font-size:14px;font-weight:700;
+color:rgba(255,255,255,.7);padding:9px 8px;border-radius:12px;cursor:pointer;
+transition:background .15s,color .15s;white-space:nowrap}
+.sbtn.on{background:var(–accent-light);color:var(–primary-dark)}
+
+/* ── CAT BAR ── */
+.cbar{background:var(–cbar-bg);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+border-bottom:1px solid var(–sep);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;
 flex-shrink:0;padding:7px 10px;gap:6px}
 .cbar::-webkit-scrollbar{display:none}
-.cbtn{flex-shrink:0;background:var(--gray3);border:none;font-family:var(--f);font-size:13px;font-weight:600;
-color:#3C3C43;padding:7px 13px;border-radius:20px;cursor:pointer;
+.cbtn{flex-shrink:0;background:var(–gray3);border:none;font-family:var(–f);font-size:13px;font-weight:600;
+color:var(–txt2);padding:7px 13px;border-radius:20px;cursor:pointer;
 transition:background .12s,color .12s;white-space:nowrap}
-.cbtn.on{background:var(--primary-dark);color:var(--accent-light)}
+.cbtn.on{background:var(–primary-dark);color:var(–accent-light)}
 
 /* MENU ITEMS */
-.mi{background:var(--card);border-radius:var(--r2);padding:13px 13px;box-shadow:var(--sh);
-display:flex;align-items:center;gap:10px;margin-bottom:7px;user-select:none}
-.inum{font-size:13px;font-weight:700;color:var(--gray2);min-width:20px;text-align:center}
+.mi{background:var(–card);border-radius:var(–r2);padding:13px;box-shadow:var(–sh);
+display:flex;align-items:center;gap:10px;margin-bottom:7px;user-select:none;transition:background .2s}
+.inum{font-size:13px;font-weight:700;color:var(–gray2);min-width:20px;text-align:center}
 .iinfo{flex:1}
-.iname{font-size:15px;font-weight:500;line-height:1.25}
-.iprice{font-size:13px;color:var(--gray);margin-top:2px}
-.abtn{background:var(--primary-dark);color:var(--accent-light);border:none;font-size:23px;font-weight:300;
+.iname{font-size:15px;font-weight:500;line-height:1.25;color:var(–txt)}
+.iprice{font-size:13px;color:var(–gray);margin-top:2px}
+.abtn{background:var(–primary-dark);color:var(–accent-light);border:none;font-size:23px;font-weight:300;
 width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;
-justify-content:center;flex-shrink:0;transition:transform .1s,background .1s;font-family:var(--f);line-height:1}
+justify-content:center;flex-shrink:0;transition:transform .1s,background .1s;font-family:var(–f);line-height:1}
 .abtn:active{transform:scale(.82)}
-.abtn.ic{background:var(--accent-light);color:var(--primary-dark)}
+.abtn.ic{background:var(–accent-light);color:var(–primary-dark)}
 
-/* ORDER CARD */
-.ocard{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:8px;overflow:hidden}
-.ohdr{padding:13px 15px 10px;border-bottom:1px solid var(--sep);display:flex;align-items:center;justify-content:space-between}
-.ohtit{font-size:16px;font-weight:700;color:var(--primary-dark)}
-.obdg{background:var(--primary-dark);color:var(--accent-light);font-size:12px;font-weight:800;border-radius:10px;padding:3px 9px}
-
-/* CATEGORY LABEL */
-.oclbl{font-size:13px;font-weight:800;color:var(--accent-light);text-transform:uppercase;letter-spacing:.6px;
-padding:8px 15px;background:var(--primary-dark)}
-
-.orrow{display:flex;align-items:center;gap:8px;padding:11px 15px;border-bottom:1px solid var(--sep)}
+/* ORDER */
+.ocard{background:var(–card);border-radius:var(–r);box-shadow:var(–sh);margin-bottom:8px;overflow:hidden;transition:background .2s}
+.ohdr{padding:13px 15px 10px;border-bottom:1px solid var(–sep);display:flex;align-items:center;justify-content:space-between}
+.ohtit{font-size:16px;font-weight:700;color:var(–primary-dark)}
+.obdg{background:var(–primary-dark);color:var(–accent-light);font-size:12px;font-weight:800;border-radius:10px;padding:3px 9px}
+.oclbl{font-size:13px;font-weight:800;color:var(–accent-light);text-transform:uppercase;letter-spacing:.6px;
+padding:8px 15px;background:var(–primary-dark)}
+.orrow{display:flex;align-items:center;gap:8px;padding:11px 15px;border-bottom:1px solid var(–sep)}
 .orrow:last-child{border-bottom:none}
-.oname{font-size:14px;font-weight:500;flex:1;line-height:1.3}
-.qctrl{display:flex;align-items:center;background:var(--gray3);border-radius:20px;overflow:hidden}
-.qbtn{background:none;border:none;font-family:var(--f);font-size:20px;color:var(--primary-dark);
+.oname{font-size:14px;font-weight:500;flex:1;line-height:1.3;color:var(–txt)}
+.qctrl{display:flex;align-items:center;background:var(–qctrl-bg);border-radius:20px;overflow:hidden}
+.qbtn{background:none;border:none;font-family:var(–f);font-size:20px;color:var(–primary-dark);
 width:34px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.qbtn:active{background:var(--gray2)}
-.qnum{font-size:14px;font-weight:700;min-width:22px;text-align:center}
-.oprice{font-size:13px;color:var(--primary-dark);min-width:60px;text-align:right;font-weight:700}
+.qbtn:active{background:var(–gray2)}
+.qnum{font-size:14px;font-weight:700;min-width:22px;text-align:center;color:var(–txt)}
+.oprice{font-size:13px;color:var(–primary-dark);min-width:60px;text-align:right;font-weight:700}
 
 /* BILL */
-.bcard{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:8px;overflow:hidden}
-.brow{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;border-bottom:1px solid var(--sep)}
+.bcard{background:var(–card);border-radius:var(–r);box-shadow:var(–sh);margin-bottom:8px;overflow:hidden;transition:background .2s}
+.brow{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;border-bottom:1px solid var(–sep)}
 .brow:last-child{border-bottom:none}
-.blbl{font-size:15px;color:#3C3C43}
-.bval{font-size:15px;font-weight:600}
-.brow.tot{background:rgba(37, 78, 78, 0.05)}
-.brow.tot .blbl{font-size:17px;font-weight:800;color:var(--primary-dark)}
-.brow.tot .bval{font-size:17px;font-weight:800;color:var(--primary-dark)}
+.blbl{font-size:15px;color:var(–txt2)}
+.bval{font-size:15px;font-weight:600;color:var(–txt)}
+.brow.tot{background:rgba(37,78,78,.08)}
+.brow.tot .blbl{font-size:17px;font-weight:800;color:var(–primary-dark)}
+.brow.tot .bval{font-size:17px;font-weight:800;color:var(–primary-dark)}
 
 /* NOTES */
-.ncard{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);margin-bottom:8px;overflow:hidden}
-textarea{width:100%;border:none;font-family:var(--f);font-size:15px;color:#000;
+.ncard{background:var(–card);border-radius:var(–r);box-shadow:var(–sh);margin-bottom:8px;overflow:hidden;transition:background .2s}
+textarea{width:100%;border:none;font-family:var(–f);font-size:15px;color:var(–txt);
 padding:14px 15px;resize:none;outline:none;background:transparent;min-height:72px;line-height:1.5}
-textarea::placeholder{color:var(--gray)}
+textarea::placeholder{color:var(–gray)}
 
-/* ACTION BUTTONS */
+/* ACTION */
 .arow{display:flex;gap:10px;margin-bottom:8px}
-.xbtn{flex:1;border:none;font-family:var(--f);font-size:16px;font-weight:700;
-padding:16px 8px;border-radius:var(--r2);cursor:pointer;
-transition:opacity .12s,transform .1s;letter-spacing:-.2px}
+.xbtn{flex:1;border:none;font-family:var(–f);font-size:16px;font-weight:700;
+padding:16px 8px;border-radius:var(–r2);cursor:pointer;transition:opacity .12s,transform .1s;letter-spacing:-.2px}
 .xbtn:active{opacity:.75;transform:scale(.97)}
-.xbtn.clr{background:rgba(255,59,48,.1);color:var(--red)}
-.xbtn.pay{background:var(--primary-dark);color:var(--accent-light)}
+.xbtn.clr{background:rgba(255,59,48,.12);color:var(–red)}
+.xbtn.pay{background:var(–primary-dark);color:var(–accent-light)}
 
 /* EMPTY */
-.empty{text-align:center;padding:40px 16px 20px;color:var(--gray)}
+.empty{text-align:center;padding:40px 16px 20px;color:var(–gray)}
 .ei{font-size:48px;margin-bottom:10px}
 .et{font-size:15px}
 
 /* TOAST */
 .toast{position:fixed;bottom:calc(30px + env(safe-area-inset-bottom));left:50%;
-transform:translateX(-50%) translateY(14px);background:rgba(37, 78, 78, 0.95);
-color:var(--accent-light);font-size:14px;font-weight:600;padding:10px 22px;border-radius:22px;
+transform:translateX(-50%) translateY(14px);background:rgba(37,78,78,.95);
+color:var(–accent-light);font-size:14px;font-weight:600;padding:10px 22px;border-radius:22px;
 pointer-events:none;opacity:0;transition:opacity .18s,transform .18s;
 z-index:9999;white-space:nowrap;max-width:92vw;text-align:center}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
+
 </head>
 <body>
 
@@ -162,11 +172,12 @@ z-index:9999;white-space:nowrap;max-width:92vw;text-align:center}
       <div class="nav-t">👨‍🍳 Rahmat Chef ®</div>
       <div class="nav-s">Ofitsiant paneli</div>
     </div>
+    <button class="dmbtn" id="B_DM">🌙</button>
   </div>
   <div class="scroll">
     <div class="shdr">🏠 Zal — 1 dan 9 gacha</div>
     <div class="tgrid" id="g-zal"></div>
-    <div class="shdr">🌿 Ko'cha — 10 dan 14 gacha</div>
+    <div class="shdr">🌿 Ko'cha — 1 dan 5 gacha</div>
     <div class="tgrid" id="g-kocha"></div>
   </div>
 </div>
@@ -180,7 +191,18 @@ z-index:9999;white-space:nowrap;max-width:92vw;text-align:center}
     </div>
     <button class="nbtn r" id="B_BILL">Hisob ↓</button>
   </div>
+
+  <!-- Bo'lim tanlash -->
+
+  <div class="sbar">
+    <button class="sbtn on" id="SB_ICH" onclick="setSection('ich')">🥤 Ichimliklar</button>
+    <button class="sbtn" id="SB_SHI" onclick="setSection('shi')">🍰 Shirinliklar</button>
+  </div>
+
+  <!-- Kategoriya -->
+
   <div class="cbar" id="cbar"></div>
+
   <div class="scroll" id="o-scroll">
     <div id="menu-list"></div>
     <div class="empty" id="el-empty">
@@ -203,34 +225,179 @@ z-index:9999;white-space:nowrap;max-width:92vw;text-align:center}
 <div class="toast" id="toast"></div>
 
 <script>
-const MENU={
-  "Bar (Choy)":[{n:"Kok choy",p:15000},{n:"Qora choy",p:15000},{n:"Fruktoviy choy",p:25000},
-    {n:"Yagodniy choy",p:25000},{n:"Imbir choy",p:25000},{n:"Bardak",p:5000},
-    {n:"Bardak choy",p:25000},{n:"Limonli choy",p:20000}],
-  "Coffee":[{n:"Cappucino mini",p:30000},{n:"Cappucino katta",p:35000},
-    {n:"Americano mini",p:25000},{n:"Americano katta",p:30000},
-    {n:"Espresso",p:25000},{n:"Latte",p:30000},{n:"Flat white",p:30000},{n:"Raff",p:35000}],
-  "Salqin ichimliklar":[{n:"Ice tea",p:35000},{n:"Ice tea grafin",p:50000},{n:"Ice coffee",p:35000},
-    {n:"Moxito",p:35000},{n:"Moxito grafin",p:50000},{n:"Cola",p:10000},{n:"Fanta",p:10000},
-    {n:"Pepsi",p:10000},{n:"Chortoq",p:10000},{n:"Hydrolife",p:5000},{n:"Royal",p:10000}],
-  "San Sebastian":[{n:"Nutella",p:5000},{n:"Classic",p:20000},{n:"Fistashka",p:20000},
-    {n:"Malina",p:20000},{n:"Matilda",p:20000},{n:"Dragon",p:20000},{n:"Caramel",p:20000},
-    {n:"Apelsin",p:20000},{n:"Coffee",p:20000},{n:"Matcha",p:20000},{n:"Dieticheski",p:20000}],
-  "Kurasan":[{n:"Shokoladli",p:20000},{n:"Fistashkali",p:20000},
-    {n:"Mindalli (bodom)",p:20000},{n:"Kurasan pustoy",p:17000}],
-  "Cheesecake":[{n:"Lotus",p:35000},{n:"Malina",p:35000},{n:"Shokolad",p:35000},{n:"Oreo",p:35000}],
-  "Medovik":[{n:"Classic",p:35000},{n:"Caramel",p:35000}],
-  "Napoleon":[{n:"Classik",p:35000},{n:"Shokolad",p:35000},{n:"Avganski",p:35000}],
-  "Muz":[{n:"Yashil",p:20000},{n:"Sariq",p:20000},{n:"Nok",p:20000},{n:"Qora",p:20000},
-    {n:"Malina",p:20000},{n:"Trubichka",p:10000},{n:"Biskuit",p:18000}],
-  "Pirog":[{n:"Olmali",p:17000},{n:"Olchali",p:17000},{n:"Tvorogli",p:17000}],
-  "Biscuit":[{n:"Biscuit",p:35000}]
+const SECTIONS={
+  ich:{
+    label:"🥤 Ichimliklar",
+    cats:{
+      "Choy":[
+        {n:"Assam (qora choy)",p:15000},
+        {n:"Sencha (ko'k choy)",p:15000},
+        {n:"Qora bliss",p:15000},
+        {n:"Yashil bliss",p:15000},
+        {n:"Limonli choy",p:20000},
+        {n:"Rezavorli (yagodniy)",p:35000},
+        {n:"Mango marakuya",p:35000},
+        {n:"Mevali",p:35000},
+        {n:"Relax",p:35000},
+        {n:"Zanjabilli",p:35000},
+        {n:"Karkade",p:15000},
+        {n:"Chebretts",p:15000}
+      ],
+      "Kofe":[
+        {n:"Espresso doppio",p:25000},
+        {n:"Americano",p:25000},
+        {n:"Americano grand",p:30000},
+        {n:"Kapuchino",p:30000},
+        {n:"Kapuchino grand",p:35000},
+        {n:"Raf",p:30000},
+        {n:"Flat white",p:30000},
+        {n:"Latte",p:30000},
+        {n:"Ays americano",p:30000},
+        {n:"Ays latte",p:30000},
+        {n:"Matcha",p:35000},
+        {n:"Ays matcha latte",p:35000}
+      ],
+      "Limonad":[
+        {n:"Mango marakuya (stakan)",p:35000},
+        {n:"Mango marakuya (grafin)",p:50000},
+        {n:"Tarxun marakuya (stakan)",p:35000},
+        {n:"Tarxun marakuya (grafin)",p:50000},
+        {n:"Olma marakuya (stakan)",p:35000},
+        {n:"Olma marakuya (grafin)",p:50000},
+        {n:"Kivi (stakan)",p:35000},
+        {n:"Kivi (grafin)",p:50000},
+        {n:"Rezavorli limonad (stakan)",p:35000},
+        {n:"Rezavorli limonad (grafin)",p:50000}
+      ],
+      "Sheyk":[
+        {n:"Karamelli sheyk",p:25000},
+        {n:"Vanilli sheyk",p:25000},
+        {n:"Rezavorli sheyk",p:30000},
+        {n:"Shokoladli sheyk",p:30000}
+      ],
+      "Krem Choy":[
+        {n:"Kivi aloe",p:35000},
+        {n:"Shaftoli aloe",p:35000},
+        {n:"Rezavorli",p:35000}
+      ],
+      "Fresh":[
+        {n:"Sabzili",p:30000},
+        {n:"Olmali",p:30000},
+        {n:"Miks",p:30000},
+        {n:"Lavlagi",p:30000}
+      ],
+      "Alkogolsiz":[
+        {n:"Ays ti",p:35000},
+        {n:"Moxito",p:35000}
+      ]
+    }
+  },
+  shi:{
+    label:"🍰 Shirinliklar",
+    cats:{
+      "San Sebastian":[
+        {n:"Nutella",p:5000},
+        {n:"Karameliy",p:20000},
+        {n:"Maulinali",p:20000},
+        {n:"Classic",p:20000},
+        {n:"Apelsinli",p:20000},
+        {n:"Fistashkali",p:20000},
+        {n:"Dragon fruit",p:20000},
+        {n:"San Sebastian coffee",p:20000},
+        {n:"Qulupnay",p:20000},
+        {n:"Matcha",p:20000},
+        {n:"Matilda (shokoladli) tort",p:20000},
+        {n:"San Sebastian mini",p:35000},
+        {n:"San Sebastian mini Lotus",p:35000}
+      ],
+      "Cheesecake":[
+        {n:"Malinali cheesecake",p:35000},
+        {n:"Shokoladli cheesecake",p:35000},
+        {n:"Oreo cheesecake",p:35000},
+        {n:"Tiramisu cheesecake",p:35000},
+        {n:"Lotus cheesecake",p:35000},
+        {n:"Dakuaz (pistali-mevali)",p:35000}
+      ],
+      "Kroasan":[
+        {n:"Fistashkali",p:20000},
+        {n:"Shokoladli",p:20000},
+        {n:"Mindalli",p:20000},
+      ],
+      "Tort":[
+        {n:"Napoleon tort",p:35000},
+        {n:"Napoleon (shokoladli)",p:35000},
+        {n:"General tort",p:35000},
+        {n:"Afg'oncha tort",p:35000},
+        {n:"Snickers tort",p:35000},
+        {n:"Zaxer (shokoladli tort)",p:35000},
+        {n:"Ptichye moloko",p:20000}
+      ],
+      "Tart":[
+        {n:"Tart (karamelli)",p:20000},
+        {n:"Tart (shaftoli)",p:20000},
+        {n:"Limon tart",p:20000}
+      ],
+      "Merenqa":[
+        {n:"Merenqa rulet (fistashkali)",p:25000},
+        {n:"Merenqa rulet (malinali)",p:25000},
+        {n:"Merenqa rulet (katta)",p:125000}
+      ],
+      "Pirog":[
+        {n:"Tvorogli pirog",p:17000},
+        {n:"Olmali pirog",p:17000},
+        {n:"Olchali pirog",p:17000},
+        {n:"Kuragali pirog",p:17000},
+        {n:"Zvezda (suzma pechenye)",p:7000},
+        {n:"Ragalik (iriskali) 1kg",p:48000},
+        {n:"Profitrol (ekler shariklari)",p:12000},
+        {n:"Paxlava",p:20000},
+        {n:"Bakushka (yong'oq pechenye)",p:60000},
+        {n:"Trubochka (krem bilan)",p:10000}
+      ],
+      "Muz":[
+        {n:"Muzqaymoq",p:10000},
+        {n:"Limonli muss",p:20000},
+        {n:"Qulupnay muss",p:20000},
+        {n:"Olmali muss",p:20000},
+        {n:"Shokoladli muss",p:20000}
+      ],
+      "Makaron":[
+        {n:"Makaron fistashkali",p:10000},
+        {n:"Makaron shokoladli",p:10000},
+        {n:"Makaron malinali",p:10000},
+        {n:"Makaron limonli",p:10000}
+      ],
+      "Medovik":[
+        {n:"Medovik (spartak)",p:35000},
+        {n:"Milfy (napoleon uslubida)",p:35000}
+      ]
+    }
+  }
 };
-const CATS=Object.keys(MENU);
-const SVC=0.15;
-const KEY='rc_v3';
 
-let orders={}, curTable=null, curCat=CATS[0];
+// Flat MENU for catOf lookup
+const MENU={};
+for(const sec of Object.values(SECTIONS))
+  for(const[cat,items] of Object.entries(sec.cats))
+    MENU[cat]=items;
+const ALL_CATS=Object.keys(MENU);
+
+const SVC=0.15;
+const KEY='rc_v4';
+
+let orders={}, curTable=null, curSection='ich', curCat='Choy';
+let darkMode=localStorage.getItem('rc_dark')==='1';
+
+function applyDark(){
+  document.body.classList.toggle('dark',darkMode);
+  document.getElementById('B_DM').textContent=darkMode?'☀️':'🌙';
+}
+applyDark();
+document.getElementById('B_DM').onclick=function(){
+  darkMode=!darkMode;
+  localStorage.setItem('rc_dark',darkMode?'1':'0');
+  applyDark();
+};
 
 function save(){try{localStorage.setItem(KEY,JSON.stringify(orders))}catch(e){}}
 function load(){try{const d=localStorage.getItem(KEY);if(d)orders=JSON.parse(d)}catch(e){}}
@@ -241,7 +408,9 @@ function ord(t){if(!orders[t])orders[t]={items:[],notes:""};return orders[t]}
 function sumQty(t){return ord(t).items.reduce((s,i)=>s+i.qty,0)}
 function sumMoney(t){return ord(t).items.reduce((s,i)=>s+i.price*i.qty,0)}
 function catOf(name,price){
-  for(const c of CATS)for(const m of MENU[c])if(m.n===name&&m.p===price)return c;
+  for(const c of ALL_CATS)
+    for(const m of MENU[c])
+      if(m.n===name&&m.p===price)return c;
   return"Boshqa";
 }
 
@@ -252,27 +421,52 @@ function toast(msg){
   clearTimeout(tT);tT=setTimeout(()=>el.classList.remove('on'),2000);
 }
 
+function setSection(sec){
+  curSection=sec;
+  const cats=Object.keys(SECTIONS[sec].cats);
+  curCat=cats[0];
+  document.getElementById('SB_ICH').classList.toggle('on',sec==='ich');
+  document.getElementById('SB_SHI').classList.toggle('on',sec==='shi');
+  buildCatBar();buildMenu();
+  document.getElementById('o-scroll').scrollTo({top:0,behavior:'smooth'});
+}
+
 function buildTables(){
-  ['g-zal','g-kocha'].forEach(id=>document.getElementById(id).innerHTML='');
-  for(let i=1;i<=14;i++){
-    const q=sumQty(i),m=sumMoney(i),on=q>0;
+  document.getElementById('g-zal').innerHTML='';
+  document.getElementById('g-kocha').innerHTML='';
+  for(let i=1;i<=9;i++){
+    const id='Z'+i,q=sumQty(id),m=sumMoney(id),on=q>0;
     const d=document.createElement('div');
     d.className='tc'+(on?' on':'');
     d.innerHTML=`<div class="tnum">${i}</div>
-      <div class="tzone">${i<=9?"Zal":"Ko'cha"}</div>
+      <div class="tzone">Zal</div>
       <div class="tstat"><div class="dot ${on?'da':'de'}"></div><div class="sl ${on?'sla':'sle'}">${on?"Faol":"Bo'sh"}</div></div>
       <div class="tsum">${on?fmt(m):''}</div>
       ${q>0?`<div class="tbdg">${q}</div>`:''}`;
-    d.onclick=()=>openTable(i);
-    document.getElementById(i<=9?'g-zal':'g-kocha').appendChild(d);
+    d.onclick=()=>openTable(id,'Zal',i);
+    document.getElementById('g-zal').appendChild(d);
+  }
+  for(let i=1;i<=5;i++){
+    const id='K'+i,q=sumQty(id),m=sumMoney(id),on=q>0;
+    const d=document.createElement('div');
+    d.className='tc'+(on?' on':'');
+    d.innerHTML=`<div class="tnum">${i}</div>
+      <div class="tzone">Ko'cha</div>
+      <div class="tstat"><div class="dot ${on?'da':'de'}"></div><div class="sl ${on?'sla':'sle'}">${on?"Faol":"Bo'sh"}</div></div>
+      <div class="tsum">${on?fmt(m):''}</div>
+      ${q>0?`<div class="tbdg">${q}</div>`:''}`;
+    d.onclick=()=>openTable(id,"Ko'cha",i);
+    document.getElementById('g-kocha').appendChild(d);
   }
 }
 
-function openTable(id){
-  curTable=id;curCat=CATS[0];
-  document.getElementById('o-title').textContent='Stol '+id;
-  document.getElementById('o-sub').textContent=id<=9?"Zal":"Ko'cha";
+function openTable(id,zone,num){
+  curTable=id; curSection='ich'; curCat='Choy';
+  document.getElementById('o-title').textContent='Stol '+num;
+  document.getElementById('o-sub').textContent=zone;
   document.getElementById('notes-inp').value=ord(id).notes||'';
+  document.getElementById('SB_ICH').classList.add('on');
+  document.getElementById('SB_SHI').classList.remove('on');
   buildCatBar();buildMenu();buildOrder();
   document.getElementById('s-tables').classList.add('back');
   document.getElementById('s-order').classList.remove('off');
@@ -286,7 +480,8 @@ function goBack(){
 function buildCatBar(){
   const bar=document.getElementById('cbar');
   bar.innerHTML='';
-  CATS.forEach(c=>{
+  const cats=Object.keys(SECTIONS[curSection].cats);
+  cats.forEach(c=>{
     const b=document.createElement('button');
     b.className='cbtn'+(c===curCat?' on':'');
     b.textContent=c;
@@ -297,7 +492,7 @@ function buildCatBar(){
 }
 
 function buildMenu(){
-  const items=MENU[curCat];
+  const items=SECTIONS[curSection].cats[curCat]||[];
   const o=ord(curTable);
   const el=document.getElementById('menu-list');
   el.innerHTML=`<div class="shdr" style="margin-top:4px">${curCat}</div>`;
@@ -329,25 +524,19 @@ function buildOrder(){
   const elOrder=document.getElementById('el-order');
   const elBill=document.getElementById('el-bill');
   const elNotes=document.getElementById('el-notes');
-
   if(!o.items.length){
     elEmpty.style.display='';
-    elOrder.innerHTML='';
-    elBill.innerHTML='';
-    elNotes.style.opacity='0.3';
-    return;
+    elOrder.innerHTML='';elBill.innerHTML='';
+    elNotes.style.opacity='0.3';return;
   }
-
   elEmpty.style.display='none';
   elNotes.style.opacity='1';
-
   const groups={};
   o.items.forEach((item,idx)=>{
     const c=catOf(item.name,item.price);
     if(!groups[c])groups[c]=[];
     groups[c].push({...item,_i:idx});
   });
-
   const totalQty=o.items.reduce((s,i)=>s+i.qty,0);
   let html=`<div class="ocard"><div class="ohdr"><span class="ohtit">Buyurtma</span><span class="obdg">${totalQty} ta</span></div>`;
   Object.entries(groups).forEach(([cat,items])=>{
@@ -366,7 +555,6 @@ function buildOrder(){
   });
   html+='</div>';
   elOrder.innerHTML=html;
-
   const sub=o.items.reduce((s,i)=>s+i.price*i.qty,0);
   const svc=Math.round(sub*SVC);
   elBill.innerHTML=`<div class="bcard">
@@ -394,31 +582,28 @@ document.getElementById('B_BACK').onclick=goBack;
 document.getElementById('B_BILL').onclick=function(){
   document.getElementById('o-scroll').scrollTo({top:99999,behavior:'smooth'});
 };
-
 document.getElementById('B_CLEAR').onclick=function(){
   if(!curTable){toast("Stol tanlanmagan");return;}
-  if(!confirm('Stol '+curTable+" buyurtmasi o'chirilsinmi?"))return;
+  if(!confirm("Buyurtma o'chirilsinmi?"))return;
   orders[curTable]={items:[],notes:""};
-  save();
-  document.getElementById('notes-inp').value='';
+  save();document.getElementById('notes-inp').value='';
   buildMenu();buildOrder();
-  toast('🗑 Stol '+curTable+' tozalandi');
+  toast('🗑 Stol tozalandi');
 };
-
 document.getElementById('B_PAY').onclick=function(){
   if(!curTable){toast("Stol tanlanmagan");return;}
   const o=ord(curTable);
   if(!o.items.length){toast("Buyurtma yo'q!");return;}
   const sub=o.items.reduce((s,i)=>s+i.price*i.qty,0);
   const svc=Math.round(sub*SVC);
-  if(!confirm('Stol '+curTable+'\nSubtotal: '+fmt(sub)+'\nXizmat: '+fmt(svc)+"\nJAMI TO'LOV: "+fmt(sub+svc)+"\n\nTo'landi deb belgilansinmi?"))return;
+  if(!confirm('Subtotal: '+fmt(sub)+'\nXizmat: '+fmt(svc)+"\nJAMI: "+fmt(sub+svc)+"\n\nTo'landi deb belgilansinmi?"))return;
   orders[curTable]={items:[],notes:""};
   save();goBack();
-  toast('✅ Stol '+curTable+" to'landi!");
+  toast("✅ To'landi!");
 };
 
 if('serviceWorker' in navigator){
-  const sw=`const V='rc1';
+  const sw=`const V='rc3';
 self.addEventListener('install',()=>self.skipWaiting());
 self.addEventListener('activate',()=>self.clients.claim());
 self.addEventListener('fetch',e=>{
@@ -435,5 +620,6 @@ self.addEventListener('fetch',e=>{
 
 buildTables();
 </script>
+
 </body>
 </html>
